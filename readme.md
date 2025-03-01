@@ -8,4 +8,10 @@ https://reactnative.dev/docs/components-and-apis
 We will create our components with just composing the core components.
 
 In React Native we do not have CSS.
-StyleSheet objects will help in designing the components.
+StyleSheet objects will help in designing the components. <-- based on CSS
+
+### Flexbox
+
+By default the `<View />` uses flexbox. Default `flexDirection` is `column`.
+Available values: `row`, `column`, `row-reverse`, `column-reverse`.
+By default views only take up that much space as their content requires.
