@@ -1,28 +1,40 @@
-import { StyleSheet, View, Text, Button } from "react-native";
+import { StyleSheet, View, Text, Button, TextInput } from "react-native";
 
 const Index = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.dummyText}>Another piece of text here!</Text>
-      <Text style={styles.dummyText}>Hello World!</Text>
-      <Button title="Tap me!" />
+    <View style={styles.appContainer}>
+      <View style={styles.inputs}>
+        <TextInput placeholder="Your course goal" style={styles.textInput} />
+        <View style={styles.buttonContainer}>
+          <Button title="Add" />
+        </View>
+      </View>
+      <View style={styles.list}>
+        <Text>List of the already added goals...</Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  appContainer: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  dummyText: {
-    borderWidth: 2,
     padding: 16,
-    borderColor: "red",
-    margin: 16,
+    flexDirection: "column",
   },
+  inputs: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  list: {},
+  textInput: {
+    width: "80%",
+    borderWidth: 1,
+    marginRight: 8,
+    borderColor: "#ccc",
+    padding: 8,
+  },
+  buttonContainer: { width: "15%" },
 });
 
 export default Index;
