@@ -1,5 +1,13 @@
-import { useRef, useState } from "react";
-import { StyleSheet, View, Text, Button, TextInput } from "react-native";
+import { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  TextInput,
+  FlatList,
+} from "react-native";
+import uuid from "react-native-uuid";
 
 const Index = () => {
   const [goalInput, setGoalInput] = useState("");
@@ -7,38 +15,60 @@ const Index = () => {
     setGoalInput(value);
   };
 
-  const [goals, setGoals] = useState<string[]>([]);
+  interface GoalItem {
+    concreteGoal: string;
+    id: string;
+  }
+
+  const [goals, setGoals] = useState<GoalItem[]>([]);
 
   const addPressHandler = () => {
     setGoals((previousGoals) => {
-      return [...previousGoals, goalInput];
+      return [...previousGoals, { concreteGoal: goalInput, id: uuid.v4() }];
     });
   };
 
   return (
-    <View style={styles.appContainer}>
-      <View style={styles.inputs}>
+    <View style={s.appContainer}>
+      <View style={s.inputs}>
         <TextInput
           placeholder="Your course goal"
-          style={styles.textInput}
+          style={s.textInput}
           onChangeText={goalInputHandler}
         />
-        <View style={styles.buttonContainer}>
+        <View style={s.buttonContainer}>
           <Button title="Add" onPress={addPressHandler} />
         </View>
       </View>
-      <View style={styles.list}>
+      <View style={s.list}>
         {goals.length ? (
-          goals.map((goal) => <Text>{goal}</Text>)
+          <FlatList
+            data={goals}
+            renderItem={(itemData) => (
+              <View style={s.listElement}>
+                <Text style={s.listElementText}>
+                  {itemData.item.concreteGoal}
+                </Text>
+              </View>
+            )}
+            keyExtractor={(item) => item.id}
+          />
         ) : (
-          <Text>List of the already added goals...</Text>
+          <Text>Add you goals for the course!</Text>
         )}
       </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const s = StyleSheet.create({
+  listElement: {
+    backgroundColor: "rebeccapurple",
+    borderRadius: 6,
+    padding: 8,
+    margin: 8,
+  },
+  listElementText: { color: "white" },
   appContainer: {
     paddingTop: 50,
     paddingHorizontal: 16,
