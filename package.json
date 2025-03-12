@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-goals": "cd ./apps/goals && npm start"
+    "dev-goals": "cd ./apps/goals && yarn start",
+    "dev-github-login": "cd ./apps/github-login && yarn run start"
   },
   "repository": {
     "type": "git",
