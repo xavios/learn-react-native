@@ -29,3 +29,8 @@ easily performance problems.
 
 FlatList solves this issue. Props for Flatlist to remember: renderItem,
 keyExtractor, data.
+
+---
+
+After running the `npx create-expo-app@latest`, I can reset the example with the given
+`./scripts/reset-project.js`.
